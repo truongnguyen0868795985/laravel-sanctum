@@ -18,8 +18,11 @@ class UserController extends Controller
 
 
 
-    public function profile()
+    public function profile(Request $request)
     {
-        return json_encode(auth()->user()->hasRole('super_admin'));
+        $a = $request->user()->hasRole('developer');
+
+        return $a ? 'có' : 'không';
+        return response()->json($request->user()->with('permissions', 'roles')->get());
     }
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PermissionController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,3 +31,5 @@ Route::get('/profile', [UserController::class, 'profile']);
 Route::get('login' , function() {
     return 'login đi m';
 })->name('login');
+
+Route::get('/roles', [PermissionController::class, 'Permission']);
