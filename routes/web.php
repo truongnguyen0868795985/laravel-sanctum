@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login/{id}', [AuthController::class, 'loginWithId']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::get('/profile', [UserController::class, 'profile']);
+
+Route::get('login' , function() {
+    return 'login đi m';
+})->name('login');

@@ -48,4 +48,24 @@ class AuthController extends Controller
             ]);
         }
     }
+
+    public function loginWithId($id)
+    {
+        $user = User::find($id);
+
+        $user->tokens()->delete();
+        if(Auth::attempt(['email' => $user->email, 'password' => 'password'])) {
+            $tokenResult = $user->createToken('authToken')->plainTextToken;
+
+            return 'success' . $tokenResult;
+        }
+
+        dd($user->toArray());
+
+        return 'fail';
+    }
+
+    public function logout() {
+        return auth()->logout();
+    }
 }
